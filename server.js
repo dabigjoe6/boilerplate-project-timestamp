@@ -33,10 +33,16 @@ app.get("/api/:date?", (req, res) => {
     });
   }
 
-  if (Number(req.params.date) || Number(req.params.date) === 0) {
-    try {
-      date = new Date(Number(req.params.date));
-    } catch {
+  if (Number(req.params.date)) {
+    if (String(req.params.date).length >= 13) {
+      try {
+        date = new Date(Number(req.params.date));
+      } catch {
+        return res.status(400).json({
+          error: "Invalid Date",
+        });
+      }
+    } else {
       return res.status(400).json({
         error: "Invalid Date",
       });
@@ -51,7 +57,7 @@ app.get("/api/:date?", (req, res) => {
     }
   }
 
-  if (date === "Invalid Date" || isNaN(date) || !date) {
+  if (date.toString() === "Invalid Date" || isNaN(date) || !date) {
     return res.status(400).json({
       error: "Invalid Date",
     });
