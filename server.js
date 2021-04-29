@@ -31,9 +31,9 @@ app.get("/api/timestamp", (req, res) => {
   });
 });
 
-app.get("/api/timestamp/:date", (req, res) => {
+app.get("/api/timestamp/:date?", (req, res) => {
   let date = null;
-  
+
   if(Number(req.params.date)) {
     date = new Date(Number(req.params.date));
   } else {
