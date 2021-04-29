@@ -34,6 +34,13 @@ app.get("/api", (req, res) => {
 app.get("/api/:date?", (req, res) => {
   let date = null;
 
+  if (!req.params.date) {
+    return res.json({
+      unix: new Date().getTime(),
+      utc: new Date().toUTCString(),
+    });
+  }
+
   if(Number(req.params.date)) {
     date = new Date(Number(req.params.date));
   } else {
@@ -46,7 +53,7 @@ app.get("/api/:date?", (req, res) => {
     });
   }
 
-  res.json({
+  return res.json({
     unix: date.getTime(),
     utc: date.toUTCString(),
   });
