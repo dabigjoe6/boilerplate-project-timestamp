@@ -24,14 +24,14 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/timestamp", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({
     unix: new Date().getTime(),
     utc: new Date().toUTCString(),
   });
 });
 
-app.get("/api/timestamp/:date?", (req, res) => {
+app.get("/api/:date?", (req, res) => {
   let date = null;
 
   if(Number(req.params.date)) {
