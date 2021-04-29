@@ -34,7 +34,7 @@ app.get("/api/:date?", (req, res) => {
   }
 
   if (Number(req.params.date)) {
-    if (String(req.params.date).length >= 13) {
+    if (String(req.params.date).length === 13) {
       try {
         date = new Date(Number(req.params.date));
       } catch {
